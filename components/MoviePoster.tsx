@@ -10,7 +10,7 @@ interface MoviePosterProps {
 
 export function MoviePoster({ posterUrl, title, movieId }: MoviePosterProps) {
 	return (
-		<Card className="overflow-hidden">
+		<Card className="overflow-hidden max-h-dvh">
 			<ViewTransition name={`poster-${movieId}`}>
 				<div className="relative w-full aspect-[2/3]">
 					<Image
