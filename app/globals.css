@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+body {
+  background: #ffffff;
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ViewTransition styles */
+@supports (view-transition-name: none) {
+
+  /* Enhanced morphing for poster images */
+  /* The browser automatically morphs elements with matching view-transition-name */
+  /* We enhance this with custom animations for smoother transitions */
+  
+  /* Default duration for all view transitions */
+  ::view-transition-group(*) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Override root and page-content with their specific timings */
+  ::view-transition-group(root) {
+    animation-duration: 0.3s;
+  }
+
+  ::view-transition-group(page-content) {
+    animation-duration: 0.3s;
+  }
+
+  /* Apply morph animations to all transitions except root and page-content */
+  /* Root uses fade, page-content uses slide, everything else uses morph */
+  ::view-transition-old(*) {
+    animation: morph-out 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-new(*) {
+    animation: morph-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Override with specific animations for root */
+  ::view-transition-old(root) {
+    animation: fade-out 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-new(root) {
+    animation: fade-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-old(page-content) {
+    animation: slide-out 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-new(page-content) {
+    animation: slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes morph-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes morph-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.1) translateY(-10px);
+    filter: blur(4px);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
