@@ -5,37 +5,24 @@ import { usePathname } from "next/navigation";
 
 const SCROLL_POSITIONS_KEY = "scroll-positions";
 
-// Check if device is mobile
-const isMobileDevice = (): boolean => {
+// Check if device is desktop (more than 1024px)
+const isDesktopDevice = (): boolean => {
 	if (typeof window === "undefined") return false;
 
-	// Check screen width (mobile/tablet typically < 1024px)
-	const isSmallScreen = window.innerWidth < 1024;
-
-	// Check user agent for mobile devices
-	const userAgent =
-		navigator.userAgent ||
-		navigator.vendor ||
-		(window as Window & { opera?: string }).opera ||
-		"";
-	const isMobileUA =
-		/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
-			userAgent.toLowerCase()
-		);
-
-	return isSmallScreen || isMobileUA;
+	// Check screen width (desktop is > 1024px)
+	return window.innerWidth > 1024;
 };
 
 export function ScrollRestoration() {
 	const pathname = usePathname();
 	const previousPathname = useRef<string>(pathname);
 	const isRestoring = useRef(false);
-	const isMobileRef = useRef(isMobileDevice());
+	const isDesktopRef = useRef(isDesktopDevice());
 
 	useEffect(() => {
-		// Update mobile detection on resize
+		// Update desktop detection on resize
 		const handleResize = () => {
-			isMobileRef.current = isMobileDevice();
+			isDesktopRef.current = isDesktopDevice();
 		};
 
 		window.addEventListener("resize", handleResize);
@@ -46,8 +33,8 @@ export function ScrollRestoration() {
 	}, []);
 
 	useEffect(() => {
-		// Only run scroll restoration on mobile
-		if (!isMobileRef.current) {
+		// Only run scroll restoration on desktop (more than 1024px)
+		if (!isDesktopRef.current) {
 			return;
 		}
 		// Save scroll position before navigation
