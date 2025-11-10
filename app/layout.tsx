@@ -18,6 +18,9 @@ export const metadata: Metadata = {
 	title: "Movies App - ViewTransition Demo",
 	description:
 		"A movies app demonstrating React 19 ViewTransition API with smooth page animations",
+	icons: {
+		icon: "/favicon.ico",
+	},
 };
 
 export default function RootLayout({
