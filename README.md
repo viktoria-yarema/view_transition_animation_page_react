@@ -1,8 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# View Transition Animation Demo
+
+A demonstration of smooth page transitions and animations built with **React 19**, **Next.js 16**, and **Tailwind CSS** - **without any additional animation libraries**.
+
+## Purpose
+
+This repository showcases how to create beautiful, smooth page transitions and animations using only native browser APIs and modern React features. No Framer Motion, no React Spring, no GSAP - just pure React 19's ViewTransition API, Next.js 16's routing, and Tailwind CSS for styling.
+
+## Key Features
+
+- ✨ **Smooth page transitions** using React 19's ViewTransition API
+- 🎬 **Morphing animations** for images and content between pages
+- 📱 **Mobile-optimized** scroll position restoration
+- 🎨 **Light, modern UI** with thin borders and subtle shadows
+- 🚀 **Zero animation dependencies** - pure React, Next.js, and Tailwind
+
+## Tech Stack
+
+- **React 19** - ViewTransition API for native browser transitions
+- **Next.js 16** - App Router with view transition support
+- **Tailwind CSS** - Utility-first CSS for styling
+- **TypeScript** - Type-safe development
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +41,42 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app demonstrates:
+
+1. **View Transitions**: Using React 19's `<ViewTransition>` component to create smooth morphing animations between pages
+2. **Scroll Restoration**: Custom implementation for mobile devices to preserve scroll position when navigating back
+3. **Responsive Design**: Flex-based layouts with consistent spacing (16px mobile, 24px desktop)
+4. **Component Architecture**: Reusable components with PascalCase naming convention
+
+## Project Structure
+
+```
+app/
+  ├── page.tsx              # Home page with movie grid
+  ├── movies/[id]/
+  │   └── page.tsx          # Movie detail page
+  └── globals.css            # View transition animations
+
+components/
+  ├── MovieCard.tsx         # Movie card component
+  ├── MoviePoster.tsx       # Poster with view transition
+  ├── InfoCard.tsx          # Reusable info card
+  ├── DetailItem.tsx        # Label-value pairs
+  └── ScrollRestoration.tsx # Mobile scroll restoration
+```
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [React 19 ViewTransition API](https://react.dev/reference/react/ViewTransition)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/docs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See LICENSE file for details.
